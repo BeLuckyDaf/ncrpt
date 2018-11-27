@@ -19,13 +19,22 @@ void crypt_file(char* path) {
 	char *b = (char*)malloc(sizeof(char)*BUF_SIZE);
 	__int64 br = 0;
 	
+	__int64 pctg = 0;
+	__int64 pctgn = 0;
+	
 	for (__int64 i = 0; i < size; i+=br) {
 		_fseeki64(file, i, SEEK_SET);
 		br = fread(b, 1, BUF_SIZE, file);
 		_fseeki64(file, i, SEEK_SET);
 		for (int k = 0; k < br; k++) b[k] = crypt(b[k]);
 		fwrite(b, 1, br, file);
-		printf("Read %I64d / %I64d bytes\r", i + br, size);
+		
+		// printing progress
+		pctgn = (i + br)*100/size;
+		if (pctgn != pctg) {
+			pctg = pctgn;
+			printf("Progress: %I64d%%\r", pctg);
+		}
 	}
 	printf("\nCleaning up...");
 	fclose(file);
