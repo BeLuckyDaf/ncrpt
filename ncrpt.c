@@ -12,20 +12,20 @@ char crypt(char c) {
 
 void crypt_file(char* path) {
 	FILE *file = fopen(path, "r+b");
-	fseek(file, 0L, SEEK_END);
-	unsigned long long size = ftell(file);
-	fseek(file, 0L, SEEK_SET);
+	_fseeki64(file, 0L, SEEK_END);
+	__int64 size = _ftelli64(file);
+	_fseeki64(file, 0L, SEEK_SET);
 
 	char *b = (char*)malloc(sizeof(char)*BUF_SIZE);
-	size_t br = 0;
+	__int64 br = 0;
 	
-	for (size_t i = 0; i < size; i+=br) {
-		fseek(file, i, SEEK_SET);
+	for (__int64 i = 0; i < size; i+=br) {
+		_fseeki64(file, i, SEEK_SET);
 		br = fread(b, 1, BUF_SIZE, file);
-		fseek(file, i, SEEK_SET);
+		_fseeki64(file, i, SEEK_SET);
 		for (int k = 0; k < br; k++) b[k] = crypt(b[k]);
 		fwrite(b, 1, br, file);
-		printf("Read %d / %d bytes\r", i + br, size);
+		printf("Read %I64d / %I64d bytes\r", i + br, size);
 	}
 	printf("\nCleaning up...");
 	fclose(file);
