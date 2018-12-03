@@ -29,13 +29,16 @@ void crypt_file(char* path) {
 		for (int k = 0; k < br; k++) b[k] = crypt(b[k]);
 		fwrite(b, 1, br, file);
 		
+#ifndef NO_PROGRESS
 		// printing progress
 		pctgn = (i + br)*100/size;
 		if (pctgn != pctg) {
 			pctg = pctgn;
 			printf("Progress: %I64d%%\r", pctg);
 		}
+#endif
 	}
+	
 	printf("\nCleaning up...");
 	fclose(file);
 	free(b);
