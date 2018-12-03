@@ -14,3 +14,9 @@ Here is a video on YouTube: https://www.youtube.com/watch?v=-3_Q7j0UqKE
 
 Basically, it takes a file and swaps 1st, 3rd and so on bits to their opposite (0 -> 1 and 1 -> 0).
 
+## Compiling
+
+`gcc -std=gnu11 ncrpt.c -o ncrpt64.exe`
+
+You can use `-std=c99` instead. Also, you can add `-DNO_PROGRESS` flag to turn off printing 
+current progress. 
