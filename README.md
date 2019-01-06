@@ -16,7 +16,8 @@ Basically, it takes a file and swaps 1st, 3rd and so on bits to their opposite (
 
 ## Compiling
 
-`gcc -std=gnu11 ncrpt.c -o ncrpt64.exe`
+`gcc -std=gnu11 ncrpt_*.c -o ncrpt_*.exe
+// replace * with 'mapping' or 'direct'`
 
 You can use `-std=c99` instead. Also, you can add `-DNO_PROGRESS` flag to turn off printing 
 current progress. 
