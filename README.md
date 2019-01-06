@@ -20,5 +20,5 @@ Basically, it takes a file and swaps 1st, 3rd and so on bits to their opposite (
 
 Don't forget to replace `*` with `mapping` or `direct`
 
-You can use `-std=c99` instead. Also, you can add `-DNO_PROGRESS` flag to turn off printing 
+You can use `-std=c99` instead. Also, you can add `-DNO_PROGRESS` (direct only) flag to turn off printing 
 current progress. 
